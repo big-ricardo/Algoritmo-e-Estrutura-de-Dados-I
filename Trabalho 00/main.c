@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//gcc -pedantic-errors -Wall main.c -o main.exe && ./main.exe 
+
 int main(void) {
   int n1, n2;
 
@@ -8,4 +10,5 @@ int main(void) {
 
 
   printf("%d", n1+n2);
+
 }
