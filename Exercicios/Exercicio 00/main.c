@@ -16,26 +16,47 @@ int main(void) {
     return 0;
 }
 
+//Primeira forma possivel
+// void strcat(char s1[N], char s2[N], char sres[N * 2]) {
+
+//     int tam1 = 0, tam2 = 0;
+
+//     while (s1[tam1] != '\0') {
+//         tam1++;
+//     }
+
+//     while (s2[tam2] != '\0') {
+//         tam2++;
+//     }
+
+//     // printf("%d %d\n", tam1, tam2);
+
+//     for (int i = 0; i <= tam1 + tam2; i++) {
+//         if (i < tam1) {
+//             sres[i] = s1[i];
+//         }
+//         else {
+//             sres[i] = s2[i - tam1];
+//         }
+//     }
+// }
+
+//Segunda forma possivel
 void strcat(char s1[N], char s2[N], char sres[N * 2]) {
 
-    int tam1 = 0, tam2 = 0;
+    int tam1 = 0, tam2 =0;
 
     while (s1[tam1] != '\0') {
+        sres[tam1] = s1[tam1];
         tam1++;
     }
 
     while (s2[tam2] != '\0') {
+        sres[tam1 + tam2] = s2[tam2];
         tam2++;
     }
 
-    // printf("%d %d\n", tam1, tam2);
+    sres[tam1 + tam2] = '\0';
 
-    for (int i = 0; i <= tam1 + tam2; i++) {
-        if (i < tam1) {
-            sres[i] = s1[i];
-        }
-        else {
-            sres[i] = s2[i - tam1];
-        }
-    }
+    // printf("%d %d\n", tam1, tam2);
 }
