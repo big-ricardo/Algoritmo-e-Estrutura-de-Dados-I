@@ -7,6 +7,27 @@
 
 //VocÃª deverÃ¡ modificar apenas a funÃ§Ã£o abaixo, vocÃª 
 //nÃ£o pode modificar a assinatura dela
+
+int analizaString(char* sin, char* sres, int* tam){
+  int espacos = 0;
+
+  for(int i = 0; sin[i] != '\0'; i++){
+
+    if(sin[i] == '\n'){
+      continue;
+
+    }else if(sin[i] == ' '){
+      espacos = espacos + 1;
+    }
+
+    sres[*tam] = sin[i];
+    *tam = *tam + 1;
+  }
+
+  return espacos;
+
+}
+
 int concatena(char* s1, char* s2, char* sres, int* espacos){
   //===============
   //IMPLEMENTE AQUI
@@ -15,24 +36,14 @@ int concatena(char* s1, char* s2, char* sres, int* espacos){
   int tamTotal = 0; 
   *espacos = 0;
 
-  while (s1[tamTotal] != '\n') {
-      sres[tamTotal] = s1[tamTotal];
-      tamTotal++;
-  }
+  *espacos += analizaString(s1, sres, &tamTotal);
 
   sres[tamTotal++] = ' ';
+  *espacos = *espacos + 1;
 
-  for(int i = 0; s2[i] != '\n'; i++){
-    sres[tamTotal++] = s2[i];
-  }
+  *espacos += analizaString(s2, sres, &tamTotal);
 
   sres[tamTotal] = '\0';
-
-  for(int i = 0; i < tamTotal; i++){
-    if(sres[i] == ' '){
-      *espacos = *espacos + 1;
-    }
-  }
   
   return tamTotal;
 
