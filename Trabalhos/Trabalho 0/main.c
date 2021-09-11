@@ -7,7 +7,7 @@ typedef int bool;
 /*
   Luis Ricardo Albano Santos - 2021031844
   gcc -pedantic-errors -Wall main.c -o main.exe && ./main.exe 
-*/
+*/ 
 
 int main(void) {
   
