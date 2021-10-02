@@ -80,7 +80,7 @@ int main(void) {
 
     p_no lista = criaLista();
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 100000000; i++) {
         lista = adicionaLista(lista, i);
     }
 
@@ -93,13 +93,13 @@ int main(void) {
     printf("\n");
 
     elemento = buscaElemento(lista, 4);
-    printaElemento(elemento);
+    printaElemento(elemento); 
     printf("\n");
 
     lista = deletaElemento(lista, 2);
 
-    printaLista(lista);
-    printf("\n");
+    //printaLista(lista);
+    //printf("\n");
     apagaLista(lista);
 
     printf("\n");
