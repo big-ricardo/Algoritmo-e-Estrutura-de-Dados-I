@@ -49,16 +49,16 @@ void printaLista(p_no lista) {
 
 p_no deletaElemento(p_no lista, int dado) {
     if (lista == NULL || lista->prox == NULL) return NULL;
-    p_no aux = lista->prox;
-    if ((lista->prox)->dado == dado) {
-        lista->prox = lista->prox->prox;
+    p_no proximo = lista->prox;
+    if (proximo->dado == dado) {
+        lista->prox = proximo->prox;
 
-        free(aux);
+        free(proximo);
         return lista;
     } else if (lista->dado == dado) {
         free(lista);
 
-        return aux;
+        return proximo;
     }
 
     deletaElemento(lista->prox, dado);
@@ -96,7 +96,7 @@ int main(void) {
     printaElemento(elemento);
     printf("\n");
 
-    lista = deletaElemento(lista, 10);
+    lista = deletaElemento(lista, 2);
 
     printaLista(lista);
     printf("\n");
