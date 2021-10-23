@@ -89,6 +89,9 @@ int main(void) {
 
   printf("\n");
 
+  free(objetos);
+  free(resp);
+
   return 0;
 
 }
