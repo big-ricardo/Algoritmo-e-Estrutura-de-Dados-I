@@ -9,14 +9,21 @@ typedef int bool;
   gcc -pedantic-errors -Wall main.c -o main.exe && ./main.exe
 */
 
+typedef struct Objeto {
+  int peso;
+  int na_balanca;
+} Objeto; 
+
+typedef struct Objeto *p_Objeto;
+
 // Função que cria um vetor com o tamanho informado
-int* cria_vetor(int quant_objetos) {
-  int* vetor = malloc(quant_objetos * sizeof(int));
+p_Objeto cria_vetor_de_objetos(int quant_objetos) {
+  p_Objeto vetor = malloc(quant_objetos * sizeof(Objeto));
   return vetor;
 }
 
 // Função que faz a verificação das combinações para obter o resultado final
-bool verifica_pesos(int* objetos, int quant_objetos, int peso_total, int peso_atual, int* resposta) {
+bool verifica_pesos(p_Objeto objetos, int quant_objetos, int peso_total, int peso_atual) {
 
   // Se o peso atual for maior que o peso total, retorna false
   if (peso_atual == peso_total) return true;
@@ -28,7 +35,7 @@ bool verifica_pesos(int* objetos, int quant_objetos, int peso_total, int peso_at
   if (quant_objetos == 0) return false;
 
   //Defino se o objeto vai ser colocado na balança
-  resposta[quant_objetos - 1] = 1;
+  objetos[quant_objetos - 1].na_balanca = 1;
 
   /* 
     Se a função retornar true, significa que o objeto foi colocado na balança
@@ -36,7 +43,7 @@ bool verifica_pesos(int* objetos, int quant_objetos, int peso_total, int peso_at
     um return true
   */
   if (verifica_pesos(objetos, quant_objetos - 1, peso_total, peso_atual +
-    objetos[quant_objetos - 1], resposta)) return true;
+    objetos[quant_objetos - 1].peso)) return true;
 
   /* 
     Se a função retornar false, significa que o objeto não foi colocado na balança
@@ -44,7 +51,7 @@ bool verifica_pesos(int* objetos, int quant_objetos, int peso_total, int peso_at
   */
 
   // Defino que o objeto não vai ser colocado na balança
-  resposta[quant_objetos - 1] = 0;
+  objetos[quant_objetos - 1].na_balanca = 0;
 
   /* 
     Se a função retornar true, significa que o objeto não foi colocado na balança
@@ -52,8 +59,7 @@ bool verifica_pesos(int* objetos, int quant_objetos, int peso_total, int peso_at
     um return true
   */
 
-  if (verifica_pesos(objetos, quant_objetos - 1, peso_total, peso_atual, 
-    resposta)) return true;
+  if (verifica_pesos(objetos, quant_objetos - 1, peso_total, peso_atual)) return true;
 
   // Retorna false caso nenhuma das combinações seja satisfeita
   return false;
@@ -71,26 +77,24 @@ int main(void) {
   scanf("%d", &quant_objetos);
 
   // Alocação de memória
-  int* objetos = cria_vetor(quant_objetos);
-  int* resp = cria_vetor(quant_objetos);
+  p_Objeto objetos = cria_vetor_de_objetos(quant_objetos);
 
   // Entrada dos pesos dos objetos
   for (int i = 0; i < quant_objetos; i++) {
-    scanf("%d", &objetos[i]);
+    scanf("%d", &objetos[i].peso);
   }
   
   // Verifica a combinação de objetos que possam ser colocados na balança
-  verifica_pesos(objetos, quant_objetos, peso_total, 0, resp);
+  verifica_pesos(objetos, quant_objetos, peso_total, 0);
 
   // Impressão do resultado das respostas
   for (int i = 0; i < quant_objetos; i++) {
-    printf("%d ", resp[i]);
+    printf("%d ", objetos[i].na_balanca);
   }
 
   printf("\n");
 
   free(objetos);
-  free(resp);
 
   return 0;
 
