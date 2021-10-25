@@ -95,6 +95,7 @@ int main(void) {
 
   printf("\n");
 
+  // Liberação de memória
   free(objetos);
 
   return 0;
