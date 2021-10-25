@@ -9,14 +9,15 @@ typedef int bool;
   gcc -pedantic-errors -Wall main.c -o main.exe && ./main.exe
 */
 
+// Struct do objeto 
 typedef struct Objeto {
-  int peso;
-  int na_balanca;
+  int peso; //Peso do objeto
+  int na_balanca; // Se ele vai para balança ou não
 } Objeto; 
 
 typedef struct Objeto *p_Objeto;
 
-// Função que cria um vetor com o tamanho informado
+// Função que cria um vetor de objeto com o tamanho informado
 p_Objeto cria_vetor_de_objetos(int quant_objetos) {
   p_Objeto vetor = malloc(quant_objetos * sizeof(Objeto));
   return vetor;
@@ -76,7 +77,7 @@ int main(void) {
   scanf("%d", &peso_total);
   scanf("%d", &quant_objetos);
 
-  // Alocação de memória
+  // Crio um vetor de objetos
   p_Objeto objetos = cria_vetor_de_objetos(quant_objetos);
 
   // Entrada dos pesos dos objetos
