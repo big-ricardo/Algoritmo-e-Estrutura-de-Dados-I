@@ -20,4 +20,5 @@ void* desenfileira(p_fila);
 //LiberaFila (libera a memória alocada para a fila)
 void liberaFila(p_fila);
 
+//FilaVazia (verifica se a fila está vazia)
 int filaVazia(p_fila);
