@@ -4,15 +4,19 @@
 #define false 0
 typedef int bool;
 
-struct fila_No {
+struct No {
     void* info;
-    struct fila_No* prox;
+    struct No* prox;
 };
 
+typedef struct  No* p_no;
+
 struct Fila {
-    p_fila_no inicio;
-    p_fila_no fim;
+    p_no inicio;
+    p_no fim;
 };
+
+typedef struct No No;
 
 p_fila criaFila() {
     p_fila fila = (p_fila)malloc(sizeof(Fila));
@@ -23,7 +27,7 @@ p_fila criaFila() {
 
 void enfileira(p_fila f, void* info) {
 
-    p_fila_no novo = malloc(sizeof(fila_No));
+    p_no novo = malloc(sizeof(No));
 
     novo->info = info;
     novo->prox = NULL;
@@ -46,7 +50,7 @@ bool filaVazia(p_fila f) {
 
 void* desenfileira(p_fila f) {
     void* aux;
-    p_fila_no noAux;
+    p_no noAux;
 
     if (f->inicio != NULL) {
         noAux = f->inicio;
@@ -63,9 +67,9 @@ void* desenfileira(p_fila f) {
 }
 
 void liberaFila(p_fila f) {
-    p_fila_no no = f->inicio;
+    p_no no = f->inicio;
     while (no != NULL) {
-        p_fila_no prox = no->prox;
+        p_no prox = no->prox;
         free(no);
         no = prox;
     }

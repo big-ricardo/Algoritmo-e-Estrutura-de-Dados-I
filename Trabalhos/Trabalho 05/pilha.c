@@ -4,14 +4,18 @@
 #define false 0
 typedef int bool;
 
-struct pilha_No {
+struct No {
     void* info;
-    struct pilha_No* prox;
+    struct No* prox;
 };
 
+typedef struct  No* p_no;
+
 struct Pilha {
-    p_pilha_no pilha;
+    p_no pilha;
 };
+
+typedef struct No No;
 
 p_pilha criaPilha() {
     p_pilha p = malloc(sizeof(Pilha));
@@ -20,7 +24,7 @@ p_pilha criaPilha() {
 }
 
 void empilha(p_pilha p, void* info) {
-    p_pilha_no novo = malloc(sizeof(struct pilha_No));
+    p_no novo = malloc(sizeof(No));
     novo->info = info;
     novo->prox = p->pilha;
     p->pilha = novo;
@@ -37,7 +41,7 @@ void* desempilha(p_pilha p) {
         return NULL;
     }
 
-    p_pilha_no aux = p->pilha;
+    p_no aux = p->pilha;
     p->pilha = p->pilha->prox;
     void* info = aux->info;
     free(aux);

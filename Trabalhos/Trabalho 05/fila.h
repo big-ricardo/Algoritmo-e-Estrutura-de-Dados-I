@@ -1,9 +1,7 @@
 #define	FILA_H
 
 typedef struct Fila Fila;
-typedef struct fila_No fila_No;
 
-typedef struct  fila_No* p_fila_no;
 typedef struct  Fila* p_fila;
 
 p_fila criaFila();
