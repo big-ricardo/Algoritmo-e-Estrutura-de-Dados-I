@@ -6,10 +6,9 @@ FONTES = $(wildcard *.c)
 
 OBJETOS = $(FONTES:.c=.o)
 
-EXECUTAVEL = main.exe
+EXECUTAVEL = programa.exe
 
 all: $(EXECUTAVEL)
-	./$(EXECUTAVEL)
 
 $(EXECUTAVEL) : $(OBJETOS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLASGS)
@@ -18,10 +17,10 @@ $(EXECUTAVEL) : $(OBJETOS)
 	$(CC) -c $(CFLAGS) $^
 
 clean:
-	rm -rf *.o
+	rm -rf *.o *.exe
 
 rmproper: clean
 	rm -rf $(EXECUTAVEL)
 
 run: $(EXECUTAVEL)
-
+	./$(EXECUTAVEL)
