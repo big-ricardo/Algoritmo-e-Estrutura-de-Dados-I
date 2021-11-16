@@ -1,3 +1,5 @@
+# Luis Ricardo
+
 CC = gcc
 CFLAGS = -pedantic-errors -Wall -g
 LDFLASGS = -lm
