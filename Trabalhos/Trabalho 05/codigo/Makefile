@@ -11,7 +11,6 @@ OBJETOS = $(FONTES:.c=.o)
 EXECUTAVEL = main.exe
 
 all: $(EXECUTAVEL)
-	./$(EXECUTAVEL)
 	
 $(EXECUTAVEL) : $(OBJETOS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLASGS)

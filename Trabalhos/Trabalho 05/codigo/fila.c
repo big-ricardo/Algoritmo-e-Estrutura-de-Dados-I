@@ -70,6 +70,7 @@ void liberaFila(p_fila f) {
     p_no no = f->inicio;
     while (no != NULL) {
         p_no prox = no->prox;
+        free(no->info);
         free(no);
         no = prox;
     }

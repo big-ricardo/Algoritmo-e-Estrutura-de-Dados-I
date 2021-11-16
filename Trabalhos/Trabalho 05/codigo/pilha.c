@@ -55,7 +55,8 @@ void* desempilha(p_pilha p) {
 
 void liberaPilha(p_pilha p) {
     while (!pilhaVazia(p)) {
-        desempilha(p);
+        void* info = desempilha(p);
+        free(info);
     }
     free(p);
 }

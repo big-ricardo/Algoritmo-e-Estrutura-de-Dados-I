@@ -19,9 +19,14 @@ int tamanhoString(char* str) {
   return i;
 }
 
-char* converteNumero(int value, char* str)
-{
-  char temp;
+char* converteNumero(int value, char* str) {
+
+  if (value == 0) {
+    str[0] = '0';
+    str[1] = '\0';
+    return str;
+  }
+
   for (int i = 0; value > 0; i++) {
     int digito = value % 10;
     str[i] = digito + '0';
@@ -29,11 +34,7 @@ char* converteNumero(int value, char* str)
   }
   int j = tamanhoString(str) - 1;
 
-  if (j < 0) {
-    str[0] = '0';
-    str[1] = '\0';
-  }
-
+  char temp;
   for (int i = 0; i < j; i++) {
     temp = str[i];
     str[i] = str[j];
@@ -42,7 +43,6 @@ char* converteNumero(int value, char* str)
   }
 
   return str;
-
 
 }
 
@@ -59,11 +59,9 @@ void analisaChave(p_pilha pilha, p_fila fila, char chave, char* valor) {
     }
     break;
   case 't':
-    aux = malloc(sizeof(char));
+    aux = malloc(5 * sizeof(char));
     converteNumero(tamanhoPilha(pilha), (char*)aux);
-    if (aux != NULL) {
-      enfileira(fila, aux);
-    }
+    enfileira(fila, aux);
     break;
   }
 }
@@ -94,6 +92,7 @@ int main(void) {
   while (!filaVazia(fila)) {
     char* aux = (char*)desenfileira(fila);
     printf("%s\n", aux);
+    free(aux);
   }
 
   liberaFila(fila);
