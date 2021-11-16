@@ -14,6 +14,7 @@ typedef struct  No* p_no;
 struct Fila {
     p_no inicio;
     p_no fim;
+    int tamanho;
 };
 
 typedef struct No No;
@@ -22,6 +23,7 @@ p_fila criaFila() {
     p_fila fila = (p_fila)malloc(sizeof(Fila));
     fila->inicio = NULL;
     fila->fim = NULL;
+    fila->tamanho = 0;
     return fila;
 }
 
@@ -41,6 +43,7 @@ void enfileira(p_fila f, void* info) {
         f->fim->prox = novo;
         f->fim = novo;
     }
+    f->tamanho++;
     return;
 }
 
@@ -56,7 +59,7 @@ void* desenfileira(p_fila f) {
         noAux = f->inicio;
         aux = noAux->info;
         f->inicio = f->inicio->prox;
-
+        f->tamanho--;
         if (f->inicio == NULL) {
             f->fim = NULL;
         }
