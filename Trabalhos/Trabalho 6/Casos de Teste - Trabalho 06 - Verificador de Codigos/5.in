@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void imprime_mundo(){
+  printf("Ola Mundo\n");
+}
+
+int main(int argc, char * argv[]){
+  for(int i = 0; i < 1000; i++){
+    imprime_mundo();
+  ]
+}
