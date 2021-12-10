@@ -9,7 +9,7 @@ p_heap cria_fila_prio(int capacidade) {
     p_heap fila = (p_heap)malloc(sizeof(Heap));
     fila->tamanho = 0;
     fila->capacidade = capacidade;
-    fila->vetor = malloc(capacidade * sizeof(Torsimre));
+    fila->vetor = malloc(capacidade * sizeof(Torre));
     return fila;
 }
 

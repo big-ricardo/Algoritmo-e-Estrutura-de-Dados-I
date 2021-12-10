@@ -20,3 +20,4 @@ p_heap cria_fila_prio(int capacidade);
 void insere(p_heap fila, int id, int hp);
 Torre retorna_min(p_heap fila);
 void destroi_heap(p_heap fila);
+int tamanho_heap(p_heap fila)
