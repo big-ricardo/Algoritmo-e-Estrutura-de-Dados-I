@@ -13,6 +13,10 @@ p_heap cria_fila_prio(int capacidade) {
     return fila;
 }
 
+int tamanho_heap(p_heap fila) {
+    return fila->tamanho;
+}
+
 void insere(p_heap fila, int id, int hp) {
     Torre torre;
     torre.id = id;
