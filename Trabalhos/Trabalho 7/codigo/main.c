@@ -50,5 +50,7 @@ int main(int argc, char* argv[]) {
   printf("\nFINAL:\n");
   printf("Jogador tomou %d dano\n", dano_jogador);
 
+  destroi_heap(f);
+
   return 0;
 }
