@@ -1,23 +1,5 @@
 #define HEAP
 
-
-typedef struct {
-    int id;
-    int vida;
-} torre;
-
-// Estrutura do heap
-typedef struct Heap {
-    int tamanho;
-    int capacidade;
-    torre* vetor;
-} Heap;
-
-// Ponteiro para a estrutura do heap
-typedef Heap* p_fp;
-// Ponteiro para estrutura da torre
-typedef torre* p_torre;
-
 // Cria um heap(int capacidade)
 p_fp criar_fila_prio(int capacidade);
 
