@@ -4,10 +4,9 @@ typedef struct Fila Fila;
 
 typedef struct  Fila* p_fila;
 
-p_fila criaFila();
 
 //CriaFila (cria a estrutura fila vazia)
-void infileira(p_fila, void*);
+p_fila criaFila();
 
 //Enfileira (insere um elemento na fila)
 void enfileira(p_fila, void*);

@@ -1,0 +1,99 @@
+Nova torre 0: 12
+Atk 0: 12 -> 2
+1 dano
+
+Nova torre 1: 19
+Atk 0: 2 -> -8
+t0 caiu
+1 dano
+
+Nova torre 2: 18
+Atk 2: 18 -> 8
+2 dano
+
+Nova torre 3: 20
+Atk 2: 8 -> -2
+t2 caiu
+2 dano
+
+Nova torre 4: 17
+Atk 4: 17 -> 7
+3 dano
+
+Nova torre 5: 2
+Atk 5: 2 -> -8
+t5 caiu
+3 dano
+
+Nova torre 6: 3
+Atk 6: 3 -> -7
+t6 caiu
+3 dano
+
+Nova torre 7: 2
+Atk 7: 2 -> -8
+t7 caiu
+3 dano
+
+Nova torre 8: 1
+Atk 8: 1 -> -9
+t8 caiu
+3 dano
+
+Nova torre 9: 2
+Atk 9: 2 -> -8
+t9 caiu
+3 dano
+
+Nova torre 10: 11
+Atk 4: 7 -> -3
+t4 caiu
+3 dano
+
+Nova torre 11: 5
+Atk 11: 5 -> -5
+t11 caiu
+3 dano
+
+Nova torre 12: 8
+Atk 12: 8 -> -2
+t12 caiu
+3 dano
+
+Nova torre 13: 10
+Atk 13: 10 -> 0
+t13 caiu
+3 dano
+
+Nova torre 14: 5
+Atk 14: 5 -> -5
+t14 caiu
+3 dano
+
+Nova torre 15: 10
+Atk 15: 10 -> 0
+t15 caiu
+3 dano
+
+Nova torre 16: 6
+Atk 16: 6 -> -4
+t16 caiu
+3 dano
+
+Nova torre 17: 8
+Atk 17: 8 -> -2
+t17 caiu
+3 dano
+
+Nova torre 18: 20
+Atk 10: 11 -> 1
+4 dano
+
+Nova torre 19: 20
+Atk 10: 1 -> -9
+t10 caiu
+4 dano
+
+
+FINAL:
+Jogador tomou 56 dano
