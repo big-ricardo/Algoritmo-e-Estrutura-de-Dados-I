@@ -64,7 +64,8 @@ void sobe_no_heap(p_fp fila, int i) {
     fila->vetor[p] = aux;
     sobe_no_heap(fila, p);
   }
-  else if (fila->vetor[i].vida == fila->vetor[p].vida) {
+
+  if (fila->vetor[i].vida == fila->vetor[p].vida) {
     if (fila->vetor[i].id < fila->vetor[p].id) {
       troca(fila, i, p);
       sobe_no_heap(fila, p);
@@ -89,24 +90,37 @@ void insere(p_fp fila, int id, int vida) {
 }
 
 // Função que desce o elemento no heap
-void desce_no_heap(p_fp fila, int i) {
-  int menor = filho_esq(i);
+void desce_no_heap(p_fp fila, int pai) {
+  int menor = filho_esq(pai);
   if (menor > tamanho_fila(fila)) return;
 
-  if (filho_dir(i) < tamanho_fila(fila) &&
-    vida(fila, filho_dir(i)) < vida(fila, menor)) {
-    menor = filho_dir(i);
+  if (filho_dir(pai) < tamanho_fila(fila)) {
+    if (vida(fila, filho_dir(pai)) < vida(fila, menor)) {
+      menor = filho_dir(pai);
+    }
+    else if (vida(fila, filho_dir(pai)) == vida(fila, menor)) {
+      if (id(fila, filho_dir(pai)) < id(fila, menor)) {
+        menor = filho_dir(pai);
+      }
+    }
   }
 
-  if (vida(fila, i) > vida(fila, menor)) {
-    troca(fila, i, menor);
-    i = menor;
+  if (vida(fila, pai) > vida(fila, menor)) {
+    troca(fila, pai, menor);
+    desce_no_heap(fila, menor);
+    pai = menor;
+    return;
   }
 
-  if (fila->vetor[i].vida == vida(fila, menor) && id(fila, i) > id(fila, menor)) {
-    troca(fila, i, menor);
-    i = menor;
+  if (fila->vetor[pai].vida == vida(fila, menor)) {
+    if (fila->vetor[pai].id > id(fila, menor)) {
+      troca(fila, pai, menor);
+      desce_no_heap(fila, menor);
+      pai = menor;
+      return;
+    }
   }
+
   else return;
 
 }
@@ -140,29 +154,31 @@ int main(int argc, char* argv[]) {
   int dano_jogador = 0;
 
   //lendo a quantidade de turnos
+  if (argv[1] != NULL) {
+    insere(f, 3, 5);
+    insere(f, 4, 3);
+    insere(f, 11, 10);
+    insere(f, 2, 5);
+    insere(f, 5, 5);
+    insere(f, 10, 1);
+    insere(f, 1, 5);
+    insere(f, 12, 1);
+
+    int n = tamanho_fila(f);
+
+    for (int i = 0; i < n; i++) {
+      printf("Nova torre %d: %d\n", f->vetor[i].id, f->vetor[i].vida);
+    }
+    printf("\n\n#################################################3\n\n");
+    for (int i = 0; i < n; i++) {
+      torre torre_alvo = extrai_minimo(f);
+      printf("Nova torre %d: %d\n", torre_alvo.id, torre_alvo.vida);
+    }
+
+    return 1;
+  }
   scanf("%d", &turnos);
-  // insere(f, 3, 2);
-  // insere(f, 4, 1);
-  // insere(f, 1, 2);
-  // insere(f, 2, 2);
 
-  // for (int i = 0; i < 4; i++)
-  // {
-  //   printf("Nova torre %d: %d\n", f->vetor[i].id, f->vetor[i].vida);
-  // }
-  // torre torre_alvo = extrai_minimo(f);
-  // printf("\n\n#################################################3\n\n");
-  // printf("Nova torre %d: %d\n", torre_alvo.id, torre_alvo.vida);
-  // torre_alvo = extrai_minimo(f);
-  // printf("Nova torre %d: %d\n", torre_alvo.id, torre_alvo.vida);
-  // torre_alvo = extrai_minimo(f);
-  // printf("Nova torre %d: %d\n", torre_alvo.id, torre_alvo.vida);
-  // torre_alvo = extrai_minimo(f);
-  // printf("Nova torre %d: %d\n", torre_alvo.id, torre_alvo.vida);
-
-
-
-  // return 1;
   //semente para o gerador de numeros aleatorios
   srand(turnos);
 
