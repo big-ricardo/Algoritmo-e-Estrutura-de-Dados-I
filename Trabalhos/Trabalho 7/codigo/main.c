@@ -26,10 +26,10 @@ typedef torre* p_torre;
 
 // Função que cria um heap vazio
 p_fp criar_fila_prio(int capacidade) {
-  p_fp fila = (p_fp)malloc(sizeof(Heap));
+  p_fp fila = malloc(sizeof(Heap));
   fila->tamanho = 0;
   fila->capacidade = capacidade;
-  fila->vetor = malloc(capacidade * sizeof(torre));
+  fila->vetor = malloc(capacidade * sizeof(p_torre));
   return fila;
 }
 
@@ -38,14 +38,17 @@ int tamanho_fila(p_fp fila) {
   return fila->tamanho;
 }
 
+// Função que retorna o valor da vida da torre
 int vida(p_fp fila, int i) {
   return fila->vetor[i].vida;
 }
 
+// Função que retorna o id da torre
 int id(p_fp fila, int i) {
   return fila->vetor[i].id;
 }
 
+// Função que alterna as torres
 void troca(p_fp fila, int i, int j) {
   torre aux = fila->vetor[i];
   fila->vetor[i] = fila->vetor[j];
@@ -58,15 +61,14 @@ void sobe_no_heap(p_fp fila, int i) {
 
   if (i == p) return;
 
-  if (fila->vetor[i].vida < fila->vetor[p].vida) {
-    torre aux = fila->vetor[i];
-    fila->vetor[i] = fila->vetor[p];
-    fila->vetor[p] = aux;
+  if (vida(fila, i) < vida(fila, p)) {
+    troca(fila, i, p);
     sobe_no_heap(fila, p);
+    return;
   }
 
-  if (fila->vetor[i].vida == fila->vetor[p].vida) {
-    if (fila->vetor[i].id < fila->vetor[p].id) {
+  if (vida(fila, i) == vida(fila, p)) {
+    if (id(fila, i) < id(fila, p)) {
       troca(fila, i, p);
       sobe_no_heap(fila, p);
     }
@@ -75,16 +77,18 @@ void sobe_no_heap(p_fp fila, int i) {
   return;
 }
 
+// Função que cria uma torre
+void cria_torre(p_fp fila, int id, int vida) {
+  fila->vetor[fila->tamanho].id = id;
+  fila->vetor[fila->tamanho].vida = vida;
+  fila->tamanho++;
+}
 // Função que insere um elemento no heap
 void insere(p_fp fila, int id, int vida) {
-  torre nova;
-  nova.id = id;
-  nova.vida = vida;
   if (tamanho_fila(fila) == fila->capacidade) {
     return;
   }
-  fila->vetor[tamanho_fila(fila)] = nova;
-  fila->tamanho++;
+  cria_torre(fila, id, vida);
   sobe_no_heap(fila, tamanho_fila(fila) - 1);
   return;
 }
@@ -108,21 +112,18 @@ void desce_no_heap(p_fp fila, int pai) {
   if (vida(fila, pai) > vida(fila, menor)) {
     troca(fila, pai, menor);
     desce_no_heap(fila, menor);
-    pai = menor;
     return;
   }
 
-  if (fila->vetor[pai].vida == vida(fila, menor)) {
-    if (fila->vetor[pai].id > id(fila, menor)) {
+  if (vida(fila, pai) == vida(fila, menor)) {
+    if (id(fila, pai) > id(fila, menor)) {
       troca(fila, pai, menor);
       desce_no_heap(fila, menor);
-      pai = menor;
       return;
     }
   }
 
-  else return;
-
+  return;
 }
 
 // Função que remove o elemento com Menor vida no heap
@@ -154,29 +155,6 @@ int main(int argc, char* argv[]) {
   int dano_jogador = 0;
 
   //lendo a quantidade de turnos
-  if (argv[1] != NULL) {
-    insere(f, 3, 5);
-    insere(f, 4, 3);
-    insere(f, 11, 10);
-    insere(f, 2, 5);
-    insere(f, 5, 5);
-    insere(f, 10, 1);
-    insere(f, 1, 5);
-    insere(f, 12, 1);
-
-    int n = tamanho_fila(f);
-
-    for (int i = 0; i < n; i++) {
-      printf("Nova torre %d: %d\n", f->vetor[i].id, f->vetor[i].vida);
-    }
-    printf("\n\n#################################################3\n\n");
-    for (int i = 0; i < n; i++) {
-      torre torre_alvo = extrai_minimo(f);
-      printf("Nova torre %d: %d\n", torre_alvo.id, torre_alvo.vida);
-    }
-
-    return 1;
-  }
   scanf("%d", &turnos);
 
   //semente para o gerador de numeros aleatorios
