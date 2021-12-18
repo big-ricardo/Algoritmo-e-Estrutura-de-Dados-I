@@ -1,4 +1,7 @@
 #define HEAP
+#define pai(i) ((i-1)/2)
+#define filho_esq(i) (2*i+1)
+#define filho_dir(i) (2*i+2)
 
 typedef struct {
   int id;
