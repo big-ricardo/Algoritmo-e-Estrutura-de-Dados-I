@@ -29,7 +29,7 @@ p_fp criar_fila_prio(int capacidade) {
   p_fp fila = malloc(sizeof(Heap));
   fila->tamanho = 0;
   fila->capacidade = capacidade;
-  fila->vetor = malloc(capacidade * sizeof(p_torre));
+  fila->vetor = malloc(capacidade * sizeof(torre));
   return fila;
 }
 
